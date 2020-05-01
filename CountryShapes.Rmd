@@ -1,0 +1,73 @@
+---
+title: "Mapping and Measuring Country Shapes"
+author: "Anna Urbala"
+date: "1 maja 2020"
+output: pdf_document
+---
+# Mapping and Measuring Country Shapes
+## *by Nils B. Weidmann and Kristian Skrede Gleditsch*
+
+```{r error=TRUE, cache=TRUE}
+library(cshapes)
+# load country border as of 2002
+cmap.2002 <- cshp(date=as.Date("2002-1-1"))
+```
+
+```{r error=TRUE, cache=TRUE}
+# download dataset, filter scores for 2002
+polity.file <- paste(tempdir(),"p4v2008.sav",  sep="/")
+download.file("http://www.systemicpeace.org/+ inscr/p4v2008.sav", polity.file)
+polity <- read.spss(polity.file, to.data.frame=T)
+polity.2002 <- polity[polity$year==2002,]
+polity.2002 <- subset(polity.2002,!is.na(polity2), select=c(ccode, polity2))
+
+# match country identifiers from both datasets
+o <- match(cmap.2002$COWCODE, polity.2002$ccode)
+
+# order polity dataset accordingly
+polity.2002 <- polity.2002[o,]
+
+# set row names, required for spCbind function
+row.names(polity.2002) <- cmap.2002$FEATUREID
+
+# append using spCbind
+cmap.2002.m <- spCbind(cmap.2002, polity.2002)
+```
+
+Niestety plik już nie istnieje. Przez to kolejne funkcje również się nie powiodą.
+
+```{r error=TRUE, cache=TRUE}
+# generate a color palette
+pal <- grey.colors(3, 0.25, 0.95)
+# find the class intervals and colors
+breaks <- classIntervals(cmap.2002.m$polity2,n=3, style="fixed", fixedBreaks=c(-10, -6, 7, 10))
+colors <- findColours(breaks, pal)
+# create plot and add legend
+plot(cmap.2002.m, bty="n", col=colors)
+legend(x="bottomleft",
+       legend=c("Autocracy", "Anocracy", "Democracy"),
+       fill = attr(colors, "palette"),
+       bty = "n", title="Regime type")
+```
+
+```{r error=TRUE, cache=TRUE}
+cmap <- cshp()
+centroids <- coordinates(cmap)
+distance <- function(from.x, from.y, to.x, to.y) {
+  from <- matrix(c(from.x, from.y), ncol=2, nrow=1)
+  spDistsN1(from, c(to.x, to.y), longlat = TRUE)
+}
+cmap$capcentdist <- mapply(distance, centroids[,1],
+centroids[,2], cmap$CAPLONG, cmap$CAPLAT)
+```
+
+## Problemy
+- pobierany z sieci plik już nie istnieje
+
+## Jak naprawić
+- jakby się znało strukturę pliku, można by go odtworzyć i pobierać lokalnie
+
+### Session info
+```{r, echo=FALSE, cache=TRUE}
+sessionInfo()
+```
