@@ -1,0 +1,67 @@
+---
+title: "rainbow"
+author: "Anna Urbala"
+date: "1 maja 2020"
+output: pdf_document
+---
+
+# rainbow: An R Package for VisualizingFunctional Time Series
+## *by Han Lin Shang*
+[Link](https://journal.r-project.org/archive/2011/RJ-2011-019/RJ-2011-019.pdf)
+
+```{r, cache=TRUE, error=TRUE}
+# load the package used throughout this article
+library("rainbow")
+# plot.type = "function", curves are plotted by time
+# the most recent curve is shown in purple
+# the distant past cure is shown in red
+plot(Australiasmoothfertility, plot.type = "functions",plotlegend = TRUE)
+plot(ElNinosmooth, plot.type = "functions",plotlegend = TRUE)
+```
+
+```{r, cache=TRUE, error=TRUE}
+# plot.type="depth", curves are plotted by depth
+# depth is distance between median and each curve
+# median curve (black line) is the center
+plot(ElNinosmooth, plot.type = "depth",plotlegend = TRUE)
+# plot.type="density", curves are plotted by density
+# mode (black line) has the highest density
+plot(ElNinosmooth, plot.type = "density",plotlegend = TRUE)
+```
+
+```{r, cache=TRUE, error=TRUE}
+# plot.type = "bivariate", the bivariate principal
+# component scores are displayed
+# type = "bag" requests the bagplot
+fboxplot(ElNinosmooth, plot.type = "bivariate",type = "bag", ylim = c(-10, 20), xlim = c(-10, 20))
+# plot.type = "functional", the bivariate pc scores
+# are matched to corresponding curves
+fboxplot(ElNinosmooth, plot.type = "functional",type = "bag")
+```
+
+```{r, cache=TRUE, error=TRUE}
+# type = "hdr" requests the HDR boxplot
+# alpha requests the coverage probability of inner
+# and outer HDR regions, customarily c(0.05,0.5)
+fboxplot(ElNinosmooth, plot.type = "bivariate",type = "hdr", alpha = c(0.07,0.5),ylim = c(-10,20), xlim = c(-10,20))
+fboxplot(ElNinosmooth, plot.type = "functional",type = "hdr", alpha = c(0.07,0.5))
+```
+
+```{r, cache=TRUE, error=TRUE}
+# order represents the number of SVD components
+# as the number of SVD components increases
+# the residuals should be centered around zero
+# plot can be suppressed by setting plot = FALSE
+SVDplot(ElNinosmooth, order = 3, plot = TRUE)
+```
+
+## Problemy 
+- usunięto alias `ElNinosmooth` w nowszych wersjach pakietu
+
+## Jak naprawić
+- zainstalować starszą wersję pakietu lub użyć nazwy `ElNino`
+
+### Session info
+```{r, echo=FALSE, cache=TRUE}
+sessionInfo()
+```
