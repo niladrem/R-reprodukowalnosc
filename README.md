@@ -6,5 +6,5 @@ Lista kategorii problemów wraz z licznikiem:
 | --------- | ------- |
 | brak dostępu do zewnętrznego API | |
 | zmiany w nowszych wersjach | |
-| kwestie graficzne/estetyczne | |
+| kwestie graficzne/estetyczne | :x: |
 | wymagana dodatkowa konfiguracja | |

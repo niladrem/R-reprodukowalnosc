@@ -1,0 +1,237 @@
+---
+title: "Drawing Diagrams with R"
+author: "Anna Urbala"
+date: "1 maja 2020"
+output: pdf_document
+---
+
+# Drawing Diagrams with R
+## *by Paul Murrell*
+[Link](https://journal.r-project.org/archive/2009/RJ-2009-006/RJ-2009-006.pdf)
+
+Pod każdym chunkiem kodu znajduje się wzorzec z artykułu i krótki komentarz. Grafiki można również znaleźć w katalogu *extra/DrawingDiagramsWithR*.
+
+```{r, cache=TRUE}
+library(grid)
+grid.roundrect(width=.25)
+grid.text("ISBN")
+```
+
+```{r, cache=TRUE, echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG("extra/DrawingDiagramsWithR/01.png")
+grid.raster(img)
+```
+
+Problem z proporcjami, wyjściowy prostokąt jest za wysoki.
+
+
+```{r, cache=TRUE}
+pushViewport(viewport(width=.25))
+grid.roundrect()
+grid.text("ISBN",x=unit(2, "mm"),y=unit(1.5, "lines"),just="left")
+grid.text("title",x=unit(2, "mm"),y=unit(0.5, "lines"),just="left")
+popViewport()
+```
+
+```{r, cache=TRUE, echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG("extra/DrawingDiagramsWithR/02.png")
+grid.raster(img)
+```
+
+Ten sam problem co powyżej
+
+
+```{r, cache=TRUE}
+labels <- c("ISBN", "title")
+vp <-viewport(width=max(stringWidth(labels))+unit(4, "mm"),height=unit(length(labels),"lines"))
+pushViewport(vp)
+grid.roundrect()
+grid.text(labels,x=unit(2, "mm"),y=unit(2:1 - 0.5, "lines"),just="left")
+popViewport()
+```
+
+```{r, cache=TRUE, echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG("extra/DrawingDiagramsWithR/03.png")
+grid.raster(img)
+```
+
+ok
+
+
+```{r, cache=TRUE}
+pushViewport(viewport(width=.25))
+grid.roundrect(gp=gpar(fill="grey"))
+grid.clip(y=unit(1, "lines"),just="bottom")
+grid.roundrect(gp=gpar(fill="white"))
+popViewport()
+```
+
+```{r, cache=TRUE, echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG("extra/DrawingDiagramsWithR/04.png")
+grid.raster(img)
+```
+
+Problem ze skalą znowu się powtarza.
+
+
+```{r, cache=TRUE}
+x1 <- c(0.1, 0.2, 0.2)
+y1 <- c(0.2, 0.2, 0.8)
+grid.xspline(x1, y1)
+x2 <- c(0.4, 0.5, 0.5)
+y2 <- c(0.2, 0.2, 0.8)
+grid.xspline(x2, y2, shape=-1)
+x3 <- c(0.7, 0.8, 0.8)
+y3 <- c(0.2, 0.2, 0.8)
+grid.xspline(x3, y3, shape=1)
+```
+
+```{r, cache=TRUE, echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG("extra/DrawingDiagramsWithR/05.png")
+grid.raster(img)
+```
+
+Problem ze skalą i brak punktów widocznych na wzorcowym obrazku.
+
+
+```{r, cache=TRUE}
+x1a <- 0.1; x1b <- 0.2
+y1a <- 0.2; y1b <- 0.8
+grid.curve(x1a, y1a, x1b, y1b)
+x2a <- 0.4; x2b <- 0.5
+y2a <- 0.2; y2b <- 0.8
+grid.curve(x2a, y2a, x2b, y2b,inflect=TRUE)
+x3a <- 0.7; x3b <- 0.8
+y3a <- 0.2; y3b <- 0.8
+grid.curve(x3a, y3a, x3b, y3b,ncp=8, angle=135,square=FALSE,curvature=2,arrow=arrow(angle=15))
+```
+
+```{r, cache=TRUE, echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG("extra/DrawingDiagramsWithR/06.png")
+grid.raster(img)
+```
+
+Ten sam problem co powyżej. Dodatkowo ze względu na skalę strzałka wychodzi poza obszar.
+
+```{r, cache=TRUE}
+labels <- c("ISBN", "title", "pub")
+vp <-viewport(width=max(stringWidth(labels))+unit(4, "mm"),height=unit(length(labels),"lines"))
+pushViewport(vp)
+grid.roundrect()
+grid.clip(y=unit(1, "lines"),just="bottom")
+grid.roundrect(gp=gpar(fill="grey"))
+grid.clip(y=unit(2, "lines"),just="bottom")
+grid.roundrect(gp=gpar(fill="white"))
+grid.clip()
+grid.text(labels,x=unit(rep(2, 3), "mm"),y=unit(3:1 - .5, "lines"), just="left")
+popViewport()
+```
+
+```{r, cache=TRUE, echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG("extra/DrawingDiagramsWithR/07.png")
+grid.raster(img)
+```
+
+Tutaj już jest ok, prawdopodobnie pomogło sztywne ustawienie rozmiaru.
+
+```{r, cache=TRUE}
+tableBox <- function(labels, x=.5, y=.5) {
+  nlabel <- length(labels)
+  tablevp <-viewport(x=x, y=y,width=max(stringWidth(labels)) +unit(4, "mm"),
+                     height=unit(nlabel, "lines"))
+  pushViewport(tablevp)
+  grid.roundrect()
+  if (nlabel > 1) {
+    for (i in 1:(nlabel - 1)) {
+      fill <- c("white", "grey")[i %% 2 + 1]
+      grid.clip(y=unit(i, "lines"),just="bottom")
+      grid.roundrect(gp=gpar(fill=fill))
+    }
+  }
+  grid.clip()
+  grid.text(labels,x=unit(2, "mm"), y=unit(nlabel:1 - .5, "lines"),just="left")
+  popViewport()}
+```
+
+```{r, cache=TRUE}
+boxGrob <- function(labels, x=.5, y=.5) {
+  grob(labels=labels, x=x, y=y, cl="box")}
+drawDetails.box <- function(x, ...) {
+  tableBox(x$labels, x$x, x$y)}
+xDetails.box <- function(x, theta) {
+  nlines <- length(x$labels)
+  height <- unit(nlines, "lines")
+  width <- unit(4, "mm") + max(stringWidth(x$labels))
+  grobX(roundrectGrob(x=x$x, y=x$y, width=width, height=height),theta)}
+yDetails.box <- function(x, theta) {
+  nlines <- length(x$labels)
+  height <- unit(nlines, "lines")
+  width <- unit(4, "mm") + max(stringWidth(x$labels))
+  grobY(rectGrob(x=x$x, y=x$y, width=width, height=height),theta)}
+```
+
+```{r, cache=TRUE}
+tableBox(c("ISBN", "title", "pub"),x=0.3)
+tableBox(c("ID", "name", "country"),x=0.7)
+```
+
+```{r, cache=TRUE, echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG("extra/DrawingDiagramsWithR/08.png")
+grid.raster(img)
+```
+
+ok
+
+```{r, cache=TRUE}
+box1 <- boxGrob(c("ISBN", "title","pub"), x=0.3)
+box2 <- boxGrob(c("ID", "name","country"), x=0.7)
+```
+
+```{r, cache=TRUE, echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG("extra/DrawingDiagramsWithR/09.png")
+grid.raster(img)
+```
+
+ok
+
+```{r, cache=TRUE}
+grid.draw(box1)
+grid.draw(box2)
+grid.curve(grobX(box1, "east"),grobY(box1, "south") +unit(0.5, "lines"),grobX(box2, "west"),
+           grobY(box2, "north") -unit(0.5, "lines"),inflect=TRUE,
+           arrow=arrow(type="closed",angle=15,length=unit(2, "mm")),gp=gpar(fill="black"))
+```
+
+```{r, cache=TRUE, echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG("extra/DrawingDiagramsWithR/10.png")
+grid.raster(img)
+```
+
+ok
+
+## Problemy
+- kwestie graficzne/estetyczne
+
+## Jak naprawić
+- prawdopodobnie trzeba dodatkowo skonfigurować środowisko albo po prostu zmienić kod - ustawić parametry na sztywno
+
