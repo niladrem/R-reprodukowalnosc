@@ -235,3 +235,7 @@ ok
 ## Jak naprawić
 - prawdopodobnie trzeba dodatkowo skonfigurować środowisko albo po prostu zmienić kod - ustawić parametry na sztywno
 
+### Session info
+```{r, echo=FALSE}
+sessionInfo()
+```
