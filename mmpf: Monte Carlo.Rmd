@@ -80,7 +80,8 @@ ggplot(to_heat_variance, aes(x = Petal.Width, y = Petal.Length))+
 ## Problemy
 - inne wyniki w trakcie wykonywania operacji, spowodowane losowością w procesie tworzenia modelu
 - brak dołączonych kodów - funkcje zostały ściągnięte bezpośrednio z artykułu, z kolei wykresy odtworzone na podstawie grafik
-- warto zauwazyc, ze pomimo widocznych niescislosci na mapach cieplach, wnioski pozostaja te same
+- warto zauwazyc, ze pomimo widocznych niescislosci na mapach ciepla, wnioski pozostaja te same
+
 ## Jak naprawić
 - stosowac ziarno losowosci
 - warto dolaczyc kod do wykresow
