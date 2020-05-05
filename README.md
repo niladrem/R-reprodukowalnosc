@@ -5,7 +5,7 @@ Lista kategorii problemów wraz z licznikiem:
 | Kategoria | Licznik |
 | --------- | ------- |
 | brak dostępu do zewnętrznych zasobów | :x: :x: :x:|
-| zmiany w nowszych wersjach | :x: :x:|
+| zmiany w nowszych wersjach | :x: :x: :x:|
 | kwestie graficzne/estetyczne | :x: :x:|
 | wymagana dodatkowa konfiguracja | :x: |
 | nieścisłość wyników spowodowana przez wpływ losowości | :x: :x: |
@@ -19,4 +19,4 @@ Lista artykułów:
 | shadow: Geometric Shadow Calculations | 2018 | M. Dorman, E. Erell, A. Vulkan, I. Kloog | The R Journal |
 | Mapping and Measuring Country Shapes | 2010 | Nils B. Weidmann and Kristian Skrede Gleditsch | The R Journal |
 | tmvtnorm: A Package for the Truncated Multivariate Normal Distribution | 2010 | Stefan Wilhelm and B. G. Manjunath | The R Journal |
-
+| MCMC for Generalized Linear Mixed Models with glmmBUGS | 2010 | Patrick Brown and Lutong Zhou | The R Journal | 
