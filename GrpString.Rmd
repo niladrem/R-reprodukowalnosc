@@ -163,6 +163,17 @@ StrKclust(strs3.vec)
 
 ## Jak naprawić
 - zastosować ziarno losowości (sugerowane) bądź nie stosować przybliżeń gdzie tylko to możliwe
+
+# Podsumowanie
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |➖➖➖➖➖️|
+| Kompatybilność z nowszymi wersjami |✅✅✅✅✅|
+| Kwestie graficzne/estetyczne |✅✅✅✅✅|
+| Brak problemów przy dodatkowej konfiguracji |✅✅✅✅✅|
+| Odporność na wpływ losowości |✅✅✅✅❌|
+| Dostępność kodów źródłowych |✅✅✅✅✅|
+
 ### Session info
 ```{r, echo=FALSE, cache=TRUE}
 sessionInfo()

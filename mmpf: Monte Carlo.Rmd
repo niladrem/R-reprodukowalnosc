@@ -86,6 +86,16 @@ ggplot(to_heat_variance, aes(x = Petal.Width, y = Petal.Length))+
 - stosowac ziarno losowosci
 - warto dolaczyc kod do wykresow
 
+# Podsumowanie
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |➖➖➖➖➖️|
+| Kompatybilność z nowszymi wersjami |✅✅✅✅✅|
+| Kwestie graficzne/estetyczne |➖➖➖➖➖|
+| Brak problemów przy dodatkowej konfiguracji |✅✅✅✅✅|
+| Odporność na wpływ losowości |❌❌❌❌❌|
+| Dostępność kodów źródłowych |✅✅❌❌❌|
+
 ### Session info
 ```{r, echo=FALSE, cache=TRUE}
 sessionInfo()

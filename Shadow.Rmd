@@ -402,12 +402,12 @@ svf_time = svf_end - svf_start
 ```{r, eval = TRUE, cache = FALSE}
 
 # Figure 12
-opar = par(mar = rep(1, 4))
-plot(svf_surface, axes = FALSE, box = TRUE) 
-contour(svf_surface, add = TRUE)
-plot(build, border = "red", add = TRUE)
-plot(location, add = TRUE)
-text(location, round(s, 3), halo = TRUE, pos = 3, col = "red", font = 2)
+#opar = par(mar = rep(1, 4))
+# plot(svf_surface, axes = FALSE, box = TRUE) 
+# contour(svf_surface, add = TRUE)
+# plot(build, border = "red", add = TRUE)
+# plot(location, add = TRUE)
+#text(location, round(s, 3), halo = TRUE, pos = 3, col = "red", font = 2)
 ```
 ##### Graph from the article:
 
@@ -520,6 +520,17 @@ par(opar)
 
 
 The process of reproduction did not finish with complete success but anyway most of the graphs were reproduced with details. Unfortunately, not every value was exact to the value shown in the article. Due to an error which occured in the first chunk it was impossible to continue checking functions using object `park`.
+
+# Podsumowanie
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |✅✅✅✅✅|
+| Kompatybilność z nowszymi wersjami |✅✅❌❌❌|
+| Kwestie graficzne/estetyczne |✅✅❌❌❌|
+| Brak problemów przy dodatkowej konfiguracji |✅✅✅✅✅|
+| Odporność na wpływ losowości |✅✅✅✅❌|
+| Dostępność kodów źródłowych |✅✅✅✅✅|
+
 
 # R session info:
 ```{r }

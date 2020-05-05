@@ -65,6 +65,16 @@ res$R_i
 ## Jak naprawić
 - nastąpił błąd nieścisłości danych - brak możliwości uzyskania danych wykorzystanych do stworzenia artykułu. Twórcy artykułu mogą zaktualizować dołączone dane.
 
+# Podsumowanie
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |➖➖➖➖➖️|
+| Kompatybilność z nowszymi wersjami |✅❌❌❌❌|
+| Kwestie graficzne/estetyczne |✅✅✅✅✅|
+| Brak problemów przy dodatkowej konfiguracji |✅✅✅✅✅|
+| Odporność na wpływ losowości |✅✅✅✅✅|
+| Dostępność kodów źródłowych |✅✅✅✅✅|
+
 ### Session info
 ```{r, echo=FALSE, cache=TRUE}
 sessionInfo()
