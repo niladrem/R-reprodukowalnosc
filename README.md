@@ -20,3 +20,7 @@ Lista artykułów:
 | Mapping and Measuring Country Shapes | 2010 | Nils B. Weidmann and Kristian Skrede Gleditsch | The R Journal |
 | tmvtnorm: A Package for the Truncated Multivariate Normal Distribution | 2010 | Stefan Wilhelm and B. G. Manjunath | The R Journal |
 | MCMC for Generalized Linear Mixed Models with glmmBUGS | 2010 | Patrick Brown and Lutong Zhou | The R Journal | 
+| Drawing Diagrams with R | 2009 | Paul Murrell | The R Journal |
+| Mapping and Measuring Country Shapes | 2010 | Nils B. Weidmann and Kristian Skrede Gleditsch | The R Journal |
+| Geospatial Point Density | 2018 | Paul F. Evangelista and David Beskow | The R Journal |
+| rainbow: An R Package for VisualizingFunctional Time Series | 2011 | Han Lin Shang | The R Journal |
