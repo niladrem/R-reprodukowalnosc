@@ -61,6 +61,16 @@ SVDplot(ElNinosmooth, order = 3, plot = TRUE)
 ## Jak naprawić
 - zainstalować starszą wersję pakietu lub użyć nazwy `ElNino`
 
+# Podsumowanie
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |`r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")`|
+| Kompatybilność z nowszymi wersjami |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("times")` `r icon::fa("times")`|
+| Kwestie graficzne/estetyczne |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")`|
+| Brak problemów przy dodatkowej konfiguracji |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")`|
+| Odporność na wpływ losowości |`r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")`|
+| Dostępność kodów źródłowych |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")`|
+
 ### Session info
 ```{r, echo=FALSE, cache=TRUE}
 sessionInfo()

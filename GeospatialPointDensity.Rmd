@@ -273,6 +273,16 @@ grid.raster(img)
 ## Jak naprawić
 - trzeba zapłacić Google'owi za dostęp do API
 
+# Podsumowanie
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("times")` `r icon::fa("times")` `r icon::fa("times")`|
+| Kompatybilność z nowszymi wersjami |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")`|
+| Kwestie graficzne/estetyczne |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")`|
+| Brak problemów przy dodatkowej konfiguracji |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("times")`|
+| Odporność na wpływ losowości |`r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")`|
+| Dostępność kodów źródłowych |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")`|
+
 ### Session info
 ```{r, echo=FALSE, cache=TRUE}
 sessionInfo()
