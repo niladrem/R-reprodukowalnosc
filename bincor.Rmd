@@ -1,0 +1,102 @@
+---
+title: "bincor"
+author: "Anna Urbala"
+date: "11 maja 2020"
+output: pdf_document
+---
+
+# BINCOR: An R package for Estimatingthe Correlation between Two UnevenlySpaced Time Series
+## *by Josue M. Polanco-Martinez, Martin A. Medina-Elizalde, Maria Fernanda Sanchez Goni, ManfredMudelsee*
+[Link](https://journal.r-project.org/archive/2019/RJ-2019-035/RJ-2019-035.pdf)
+
+```{r, cache=TRUE, error=TRUE}
+# Load the package
+library(BINCOR)
+# Load the time series under analysis: Example 1 and Figure 1 (ENSO vs. NHSST)
+data(ENSO)
+data(NHSST)
+# Compute the binned time series though our bin_cor function
+bincor.tmp <- bin_cor(ENSO.dat, NHSST.dat, FLAGTAU=3, "output_ENSO_NHSST.tmp")
+
+binnedts   <- bincor.tmp$Binned_time_series
+# Applying our plot_ts function
+# "Screen"
+plot_ts(ENSO.dat, NHSST.dat, binnedts[,1:2], binnedts[,c(1,3)], "ENSO-Nino3","SST NH Mean", colts1=1, colts2=2, colbints1=3, colbints2=4, device="screen")
+```
+
+Wykresy zbliżone. Niestety znowu proporcje zależą od ustawień.
+
+```{r, cache=TRUE, error=TRUE}
+# Load packages
+library(BINCOR)
+library(pracma)
+# Load the time series under analysis: Example 1 and Figure 2 (ENSO vs. NHSST)
+data(ENSO)
+data(NHSST)
+# Compute the binned time series though our bin_cor function
+bincor.tmp <- bin_cor(ENSO.dat, NHSST.dat, FLAGTAU=3, "output_ENSO_NHSST.tmp")
+binnedts   <- bincor.tmp$Binned_time_series
+# Compute the scatterplot by means of our function cor_ts
+# PDF format (scatterplot) and Pearson
+cor_ts(binnedts[,1:2], binnedts[,c(1,3)], "ENSO-Nino3", "SST NH Mean",KoCM="pearson", rmltrd="y", device="pdf", Hpdf=6, Wpdf=9, resfig=300,ofilename="scatterplot_ENSO_SST")
+```
+
+ok
+
+```{r, cache=TRUE, error=TRUE}
+# Load the package
+library(BINCOR)
+library(pracma)
+# Load the time series under analysis: Example 2 and Figure 6
+data(MD04_2845_siteID31)
+data(MD95_2039_siteID32)
+# Compute the binned time series though our bin_cor function
+bincor.tmp <- bin_cor(ID31.dat, ID32.dat, FLAGTAU=3, "salida_ACER_ABRUPT.tmp")
+binnedts   <- bincor.tmp$Binned_time_series
+# To avoid NA values
+bin_ts1 <- na.omit(bincor.tmp$Binned_time_series[,1:2])
+bin_ts2 <- na.omit(bincor.tmp$Binned_time_series[,c(1,3)])
+# Applying our plot_ts function
+# PDF format
+plot_ts(ID31.dat, ID32.dat, bin_ts1, bin_ts2, "MD04-2845 (Temp. forest)","MD95-2039 (Temp. forest )", colts1=1, colts2=2, colbints1=3, colbints2=4,device="pdf", Hpdf=6, Wpdf=9, resfig=300, ofilename="ts_ACER_ABRUPT")
+```
+delikatna różnica w proporcjach, inne odległości punktów od osi
+
+```{r, cache=TRUE, error=TRUE}
+# Load packages
+library(BINCOR)
+library(pracma)
+# Load the time series under analysis: Example 2 and Figure 7 (ID31 vs. ID32)data(MD04_2845_siteID31)
+data(MD95_2039_siteID32)
+# Compute the binned time series though our bin_cor function
+bincor.tmp <- bin_cor(ID31.dat, ID32.dat, FLAGTAU=3, "salida_ACER_ABRUPT.tmp")
+binnedts   <- bincor.tmp$Binned_time_series
+# To avoid NA values
+bin_ts1 <- na.omit(bincor.tmp$Binned_time_series[,1:2])
+bin_ts2 <- na.omit(bincor.tmp$Binned_time_series[,c(1,3)])
+# Applying our ccf_ts function
+# PDF format
+ccf_acf <- ccf_ts(bin_ts1, bin_ts2, RedL=TRUE, rmltrd="y", device="pdf", Hpdf=6,Wpdf=9, resfig=300, ofilename="ccf_ID31_ID32_res")
+```
+
+ok
+
+## Problemy 
+- czasem inne proporcje
+
+
+# Podsumowanie
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |`r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")`|
+| Kompatybilność z nowszymi wersjami |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")`|
+| Kwestie graficzne/estetyczne |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("times")`|
+| Brak problemów przy dodatkowej konfiguracji | `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` |
+| Odporność na wpływ losowości |`r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")`|
+| Dostępność kodów źródłowych |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")`|
+
+
+### Session info
+```{r, echo=FALSE, cache=TRUE}
+sessionInfo()
+```

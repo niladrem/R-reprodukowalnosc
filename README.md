@@ -7,8 +7,8 @@ Lista kategorii problemów wraz z licznikiem:
 | brak dostępu do zewnętrznych zasobów | :x: :x: :x:|
 | zmiany w nowszych wersjach | :x: :x: :x:|
 | kwestie graficzne/estetyczne | :x: :x:|
-| wymagana dodatkowa konfiguracja | :x: |
-| nieścisłość wyników spowodowana przez wpływ losowości | :x: :x: |
+| wymagana dodatkowa konfiguracja | :x: :x: |
+| nieścisłość wyników spowodowana przez wpływ losowości | :x: :x: :x: |
 
 Lista artykułów:
 | Tytuł artykułu | Rok stworzenia | Autorzy | Czasopismo w którym opublikowano |
@@ -23,3 +23,6 @@ Lista artykułów:
 | Drawing Diagrams with R | 2009 | Paul Murrell | The R Journal |
 | Geospatial Point Density | 2018 | Paul F. Evangelista and David Beskow | The R Journal |
 | rainbow: An R Package for VisualizingFunctional Time Series | 2011 | Han Lin Shang | The R Journal |
+| stplanr: A Package for Transport Planning | 2018 | Robin Lovelace, Richard Ellison | The R Journal |
+| BINCOR: An R package for Estimatingthe Correlation between Two UnevenlySpaced Time Series | 2019 | Josue M. Polanco-Martinez, Martin A. Medina-Elizalde, Maria Fernanda Sanchez Goni, ManfredMudelsee | The R Journal |
+| RSSampling: A Pioneering Package forRanked Set Sampling | 2019 | Busra Sevinc, Bekir Cetintav, Melek Esemen, and Selma Gurler | The R Journal |

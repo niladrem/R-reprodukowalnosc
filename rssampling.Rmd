@@ -1,0 +1,121 @@
+---
+title: "RSSampling"
+author: "Anna Urbala"
+date: "11 maja 2020"
+output: pdf_document
+---
+
+# RSSampling: A Pioneering Package forRanked Set Sampling
+## *by Busra Sevinc, Bekir Cetintav, Melek Esemen, and Selma Gurler*
+[Link](https://journal.r-project.org/archive/2019/RJ-2019-039/RJ-2019-039.pdf)
+
+```{r, cache=TRUE, error=TRUE}
+##Loading packages
+library("RSSampling")
+library("LearnBayes")
+## Imperfect ranking example for interested (X) and concomitant (Y) variables
+## from multivariate normal dist.
+set.seed(1)
+mu <- c(10, 8)
+variance <- c(5, 3)
+a <- matrix(c(1, 0.9, 0.9, 1), 2, 2)
+v <- diag(variance)
+Sigma <- v%*%a%*%v
+x <- rmnorm(10000, mu, Sigma)
+xx <- as.numeric(x[,1])
+xy <- as.numeric(x[,2])
+## Selecting a truncation-based ranked set sample
+con.Rrss(xx, xy, m = 4, r = 2, type = "tb", sets = TRUE, concomitant = FALSE,alpha = 0.25)
+```
+Wartości się różnią mimo ustawionego seeda, do tego nie ma wartości `concomitant.var`.
+
+```{r, cache=TRUE, error=TRUE}
+## Loading packages
+library("RSSampling")
+## Generating concomitant variable (Y) from exponential dist.
+set.seed(5)
+y = rexp(10000)
+## Determining the observation numbers of the units which are chosen to sample
+obsno.Mrss(y, m = 3, r = 5, type = "m")
+```
+
+Znowu inne wartości.
+
+```{r, cache=TRUE, error=TRUE}
+
+library("RSSampling")
+library("LearnBayes")
+## Imperfect ranking example for interested (X) and concomitant (Y) variables
+## from multivariate normal dist.
+mu <- c(10, 8)
+variance <- c(5, 3)
+rho = seq(0, 0.9, 0.1)
+se.x = mse.x = numeric()
+repeatsize = 1000
+for (i in 1:length(rho)) {
+  set.seed(1)
+  a <- matrix(c(1, rho[i], rho[i], 1), 2, 2)
+  v <- diag(variance)
+  Sigma <- v%*%a%*%v
+  x <- rmnorm(10000, mu, Sigma)
+  xx <- as.numeric(x[,1])
+  xy <- as.numeric(x[,2])
+  for (j in 1:repeatsize) {
+    set.seed(j)
+    samplex = con.Mrss(xx, xy, m = 5, r = 10, type = "r", sets = FALSE,
+                       concomitant = FALSE)$sample.x
+    se.x[j] = (mean(samplex)-mu[1])^2
+  }
+  mse.x[i] = sum(se.x)/repeatsize
+}
+plot(rho[-1], mse.x[-1], type = "o", lwd = 2,
+     main = "MSE values based on increasing correlation levels",
+     xlab = "corr.coef.", ylab = "MSE", cex = 1.5, xaxt = "n")
+axis(1, at = seq(0.1, 0.9, by = 0.1))
+```
+
+Wykres się różni, prawdopodobnie jest to spowodowane tym co wyżej.
+
+```{r, cache=TRUE, error=TRUE}
+abaloneData <- read.csv(url("https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data"), header = FALSE, col.names = c("sex", "length","diameter", "height", "whole.weight", "shucked.weight", "viscera.weight","shell.weight", "rings"))
+
+cor(abaloneData$viscera.weight, abaloneData$whole.weight)
+```
+
+ok
+
+```{r, cache=TRUE, error=TRUE}
+set.seed(50)
+sampleRSS = con.rss(abaloneData$viscera.weight, abaloneData$whole.weight, m = 5, r = 5,sets = TRUE, concomitant = FALSE)$sample.x
+meanRSS(sampleRSS, m = 5, r = 5, alpha = 0.05, alternative = "two.sided", mu_0 = 0.18)
+```
+
+znowu inne wartości
+
+```{r, cache=TRUE, error=TRUE}
+varRSS(sampleRSS, m = 5, r = 5, type = "Stokes")
+```
+
+jw.
+
+## Problemy 
+- inne wartości mimo ustawiania seeda
+
+## Jak naprawić
+- nie da się
+
+# Podsumowanie
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")`|
+| Kompatybilność z nowszymi wersjami |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")`|
+| Kwestie graficzne/estetyczne | `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("times")`|
+| Brak problemów przy dodatkowej konfiguracji |`r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")`|
+| Odporność na wpływ losowości |`r icon::fa("times")` `r icon::fa("times")` `r icon::fa("times")` `r icon::fa("times")` `r icon::fa("times")`|
+| Dostępność kodów źródłowych |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")`|
+
+
+### Session info
+```{r, echo=FALSE, cache=TRUE}
+sessionInfo()
+```

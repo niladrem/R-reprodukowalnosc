@@ -1,0 +1,63 @@
+---
+title: "stplanr"
+author: "Anna Urbala"
+date: "11 maja 2020"
+output: pdf_document
+---
+
+# stplanr: A Package for Transport Planning
+## *by Robin Lovelace, Richard Ellison*
+[Link](https://journal.r-project.org/archive/2018/RJ-2018-053/RJ-2018-053.pdf)
+
+```{r, cache=TRUE, error=TRUE}
+install.packages("stplanr")
+library(stplanr)
+dl_stats19()
+ac <- read_stats19_ac()
+ca <- read_stats19_ca()
+ve <- read_stats19_ve()
+
+library(dplyr)
+ca_ac <- inner_join(ca, ac)
+ca_fatal <- ca_ac %>%
+  filter(Casualty_Severity == "Fatal" & !is.na(Latitude)) %>%
+  select(Age = Age_of_Casualty, Mode = Casualty_Type, Longitude, Latitude)
+ca_sp <- sp::SpatialPointsDataFrame(coords = ca_cycle[3:4], data = ca_cycle[1:2])
+
+data("route_network")
+sp::proj4string(ca_sp) <- sp::proj4string(route_network)
+bb <- bb2poly(route_network)
+sp::proj4string(bb) <- sp::proj4string(route_network)
+ca_local <- ca_sp[bb,]
+
+rnet_buff_100 <- buff_geo(route_network, width = 100)
+ca_buff <- ca_local[rnet_buff_100,]
+
+plot(bb, lty = 4)
+plot(rnet_buff_100, col = "grey", add = TRUE)
+points(ca_local, pch = 4)
+points(ca_buff, cex = 3)
+```
+
+Mimo wielu prób, używania stackoverflow, google'a i issues na githubie nie udało się zainstalować pakietu.
+
+## Problemy 
+- nie da się zainstalować pakietu
+
+## Jak naprawić
+- nawet google nie wie
+
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |`r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")`|
+| Kompatybilność z nowszymi wersjami |`r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")`|
+| Kwestie graficzne/estetyczne |`r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")`|
+| Brak problemów przy dodatkowej konfiguracji |`r icon::fa("times")` `r icon::fa("times")` `r icon::fa("times")` `r icon::fa("times")` `r icon::fa("times")`|
+| Odporność na wpływ losowości |`r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")` `r icon::fa("minus")`|
+| Dostępność kodów źródłowych |`r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")` `r icon::fa("plus")`|
+
+
+### Session info
+```{r, echo=FALSE, cache=TRUE}
+sessionInfo()
+```
