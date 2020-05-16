@@ -9,6 +9,7 @@ Lista kategorii problemów wraz z licznikiem:
 | kwestie graficzne/estetyczne | :x: :x:|
 | wymagana dodatkowa konfiguracja | :x: :x: |
 | nieścisłość wyników spowodowana przez wpływ losowości | :x: :x: :x: |
+| Dostępność kodów źródłowych | :x: |
 
 Lista artykułów:
 | Tytuł artykułu | Rok stworzenia | Autorzy | Czasopismo w którym opublikowano |
@@ -25,4 +26,5 @@ Lista artykułów:
 | rainbow: An R Package for VisualizingFunctional Time Series | 2011 | Han Lin Shang | The R Journal |
 | stplanr: A Package for Transport Planning | 2018 | Robin Lovelace, Richard Ellison | The R Journal |
 | BINCOR: An R package for Estimatingthe Correlation between Two UnevenlySpaced Time Series | 2019 | Josue M. Polanco-Martinez, Martin A. Medina-Elizalde, Maria Fernanda Sanchez Goni, ManfredMudelsee | The R Journal |
-| RSSampling: A Pioneering Package forRanked Set Sampling | 2019 | Busra Sevinc, Bekir Cetintav, Melek Esemen, and Selma Gurler | The R Journal |
+| RSSampling: A Pioneering Package forRanked Set Sampling | 2019 | Busra Sevinc, Bekir Cetintav, Melek Esemen and Selma Gurler | The R Journal |
+| Fixed Point Acceleration in R | 2018 | Stuart Baumann and Margaryta Klymak | The R Journal |
