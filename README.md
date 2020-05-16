@@ -4,12 +4,12 @@ Lista kategorii problemów wraz z licznikiem:
 
 | Kategoria | Licznik |
 | --------- | ------- |
-| brak dostępu do zewnętrznych zasobów | :x: :x: :x:|
+| brak dostępu do zewnętrznych zasobów | :x: :x: :x: :x: |
 | zmiany w nowszych wersjach | :x: :x: :x:|
 | kwestie graficzne/estetyczne | :x: :x:|
 | wymagana dodatkowa konfiguracja | :x: :x: |
 | nieścisłość wyników spowodowana przez wpływ losowości | :x: :x: :x: |
-| Dostępność kodów źródłowych | :x: |
+| Dostępność kodów źródłowych | :x: :x: |
 
 Lista artykułów:
 | Tytuł artykułu | Rok stworzenia | Autorzy | Czasopismo w którym opublikowano |
@@ -28,3 +28,4 @@ Lista artykułów:
 | BINCOR: An R package for Estimatingthe Correlation between Two UnevenlySpaced Time Series | 2019 | Josue M. Polanco-Martinez, Martin A. Medina-Elizalde, Maria Fernanda Sanchez Goni, ManfredMudelsee | The R Journal |
 | RSSampling: A Pioneering Package forRanked Set Sampling | 2019 | Busra Sevinc, Bekir Cetintav, Melek Esemen and Selma Gurler | The R Journal |
 | Fixed Point Acceleration in R | 2018 | Stuart Baumann and Margaryta Klymak | The R Journal |
+| Nowcasting: An R Package for PredictingEconomic Variables Using DynamicFactor Models | 2018 | Serge de Valk, Daiane de Mattos and Pedro Ferreira | The R Journal |

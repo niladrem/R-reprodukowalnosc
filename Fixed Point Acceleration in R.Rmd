@@ -7,7 +7,7 @@ output: html_document
 
 # Fixed Point Acceleration in R
 ## Stuart Baumann, Margaryta Klymak
-
+## https://journal.r-project.org/archive/2019/RJ-2019-037/index.html
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
