@@ -1,0 +1,26 @@
+---
+title: "Geospatial - Pawel"
+author: "Paweł Koźmiński"
+date: "5/17/2020"
+output: html_document
+---
+
+
+# Ocena i podsumowanie
+
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |❌❌❌❌❌|
+| Kompatybilność z nowszymi wersjami |✅✅✅✅✅|
+| Kwestie graficzne/estetyczne |✅✅✅✅❌|
+| Brak problemów przy dodatkowej konfiguracji |✅✅✅✅✅|
+| Odporność na wpływ losowości |✅✅✅✅✅|
+| Dostępność kodów źródłowych |✅✅✅✅✅|
+
+Ze względu na płatny dostęp do usługi Google, możliwość odtworzenia kodu dla niezależnego odbiorcy nie jest możliwe. Ponadto nieliczne różnice w wykresach prezentowanych oraz udostępnionych uniemożliwiły ocenienie kwestii graficznych na 5.
+
+
+```{r}
+sessionInfo()
+```
+

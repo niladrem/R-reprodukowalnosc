@@ -1,0 +1,26 @@
+---
+title: "rssampling - Pawel"
+author: "Paweł Koźmiński"
+date: "5/17/2020"
+output: html_document
+---
+
+# Ocena i podsumowanie
+
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |➖➖➖➖➖️|
+| Kompatybilność z nowszymi wersjami |✅✅✅✅✅|
+| Kwestie graficzne/estetyczne |➖➖➖➖➖️|
+| Brak problemów przy dodatkowej konfiguracji |✅✅✅✅✅|
+| Odporność na wpływ losowości |✅❌❌❌❌|
+| Dostępność kodów źródłowych |✅✅✅✅✅|
+
+
+Brak niektórych elementów w wypisywanych obiektach oraz różnice wartości liczbowych powodują, że artykuł nie może być uznany za reprodukowalny. Ponadto jedyny zawarty wykres nie wytworzył się na moim komputerze.
+
+
+```{r}
+sessionInfo()
+```
+

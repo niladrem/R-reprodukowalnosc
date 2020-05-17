@@ -1,0 +1,24 @@
+---
+title: "Drawing Diagrams - Pawel"
+author: "Paweł Koźmiński"
+date: "5/17/2020"
+output: html_document
+---
+# Ocena i podsumowanie
+
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |➖➖➖➖➖️|
+| Kompatybilność z nowszymi wersjami |✅✅✅✅✅|
+| Kwestie graficzne/estetyczne |✅✅✅✅❌|
+| Brak problemów przy dodatkowej konfiguracji |✅✅✅✅✅|
+| Odporność na wpływ losowości |✅✅✅✅✅|
+| Dostępność kodów źródłowych |✅✅✅✅✅|
+
+Artykuł ma charakter prezentacji narzędzia. Nie wszystkie elementy pokazane przez twórców artykułu wyświetlają się dokładnie tak samo jak w dokumencie, co może przeszkadzać czytelnikom, jednak błędy są minimalne oraz występują tylko w niektórych diagramach. 
+
+
+```{r}
+sessionInfo()
+```
+

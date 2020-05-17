@@ -1,0 +1,25 @@
+---
+title: "Bincor - Paweł"
+author: "Paweł Koźmiński"
+date: "5/17/2020"
+output: html_document
+---
+
+# Ocena i podsumowanie
+
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |➖➖➖➖➖️|
+| Kompatybilność z nowszymi wersjami |✅✅✅✅✅|
+| Kwestie graficzne/estetyczne |✅✅✅✅❌|
+| Brak problemów przy dodatkowej konfiguracji |➖➖➖➖➖️|
+| Odporność na wpływ losowości |✅✅✅✅✅|
+| Dostępność kodów źródłowych |✅✅✅✅✅|
+
+Mimo że w odtwarzaniu ilustracji nastąpiło kilka naprawdę drobnych nieścisłości, wszystkie wyniki oraz wnioski uzyskane przez autorów artykułu mogą zostać odtworzone przez postronnego czytelnika.
+
+
+```{r}
+sessionInfo()
+```
+
