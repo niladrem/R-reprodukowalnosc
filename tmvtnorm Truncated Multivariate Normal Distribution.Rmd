@@ -1,0 +1,57 @@
+---
+title: 'tmvtnorm: A Package for the Truncated Multivariate Normal Distribution'
+author: "Wojciech Szczypek"
+date: "18 05 2020"
+output: html_document
+---
+
+```{r, echo = FALSE, results = 'hide'}
+library(tmvtnorm)
+```
+
+
+```{r, echo = TRUE, results = 'hide'}
+mu <- c(0.5, 0.5)
+sigma <- matrix(c(1, 0.8, 0.8, 2), 2, 2)
+a <- c(-1, -Inf)
+b <- c(0.5, 4)
+X <- rtmvnorm(n=10000, mean=mu, sigma=sigma, lower=a, upper=b, algorithm="rejection")
+alpha <- pmvnorm(lower=a, upper=b, mean=mu, sigma=sigma)
+X <- rtmvnorm(n=10000, mean=mu,sigma=sigma, lower=a, upper=b,algorithm="gibbs")
+X2 <- rtmvnorm(n=10000, mean=mu,sigma=sigma, lower=a, upper=b,algorithm="gibbs", burn.in.samples=100,thinning = 5)
+acf(X2)
+x <- seq(-1, 0.5, by=0.1)
+fx <- dtmvnorm(x, mu, sigma,lower=a, upper=b, margin=1)
+fx <- dtmvnorm(x=c(0.5, 1), mu, sigma,lower=a, upper=b, margin=c(1,2))
+moments <- mtmvnorm(mean=mu, sigma=sigma,lower=a, upper=b)
+colMeans(X)
+cov(X)
+
+```
+
+Cały kod z artykułu wykonuje się bez zarzutu. Jednak mozna mieć parę uwag:
+- w artykule nie są zamieszczone kody do uzyskania figur, które zostały wykrozystane w artykule
+- nie jest ustawione ziarno losowania, wyniki nie są w żaden sposób reprodukowalne, ponieważ cały artykuł jest o generowaniu obserwacji z rozkłądu normalnego jest to abrdzo kluczowe, zeby ziarno było ustawione
+- wykres, który otrzymujemy po wykonaniu kodu w ogóle nei pokrywa się z żadnym wyrkesem z artykułu
+
+# Oryginalen wykresy uzyte w artykule
+![Caption for the picture.](1.jpg)
+![Caption for the picture.](2.jpg)
+![Caption for the picture.](3.jpg)
+
+
+# Podsumowanie
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |➖➖➖➖➖|
+| Kompatybilność z nowszymi wersjami |✅✅✅✅✅|
+| Kwestie graficzne/estetyczne |✅✅✅❌❌|
+| Brak problemów przy dodatkowej konfiguracji |➖➖➖➖➖|
+| Odporność na wpływ losowości |❌❌❌❌❌|
+| Dostępność kodów źródłowych |✅✅✅✅❌|
+
+
+### Session info
+```{r, echo=FALSE, cache=TRUE}
+sessionInfo()
+```

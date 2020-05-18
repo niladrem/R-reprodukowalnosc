@@ -1,0 +1,54 @@
+---
+title: 'Mapping and Measuring Country Shapes'
+author: "Wojciech Szczypek"
+date: "18/5/2020"
+output: html_document
+---
+
+```{r, echo = FALSE, results = 'hide'}
+library(cshapes)
+library(sp)
+library(maptools)
+library(spdep)
+```
+
+
+```{r, echo = TRUE, results = 'hide'}
+cmap.2002 <- cshp(date=as.Date("2002-1-1"))
+
+# download dataset, filter scores for 2002
+polity.file <- paste(tempdir(),"p4v2008.sav", sep="/")
+#ponizsze sciaganei pliku nei działą
+#download.file("http://www.systemicpeace.org/inscr/p4v2008.sav", polity.file)
+#polity <- read.spss(polity.file, to.data.frame=T)
+#polity.2002 <- polity[polity$year==2002,]
+#polity.2002 <- subset(polity.2002, !is.na(polity2), select=c(ccode, #polity2))
+# match country identifiers from both datasets
+#o <- match(cmap.2002$COWCODE, polity.2002$ccode)
+# order polity dataset accordingly
+#polity.2002 <- polity.2002[o,]
+# set row names, required for spCbind function
+#row.names(polity.2002) <- cmap.2002$FEATUREID
+# append using spCbind
+#cmap.2002.m <- spCbind(cmap.2002, polity.2002)
+
+```
+
+Jak widać, już w nawet pierwszy chunk kody jest niewykonywalny, ponieważ adres, z którego trzeba sćiągnać potrzebny plik juz nie istnieje. Ponadto jedna z bibliotek jest "przestarzała" tj. wyswietla się komunikat "readShapePoly is deprecated; use rgdal::readOGR or sf::st_read ". Niestety bez tego reszta części kodu jest nie od odwtorzenia, ponieważ wymagane są wyniki z poprzednich chunków.
+
+
+# Podsumowanie
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |❌❌❌❌❌|
+| Kompatybilność z nowszymi wersjami |✅✅❌❌❌|
+| Kwestie graficzne/estetyczne |➖➖➖➖➖|
+| Brak problemów przy dodatkowej konfiguracji |➖➖➖➖➖|
+| Odporność na wpływ losowości |➖➖➖➖➖|
+| Dostępność kodów źródłowych |✅✅✅✅❌|
+
+
+### Session info
+```{r, echo=FALSE, cache=TRUE}
+sessionInfo()
+```

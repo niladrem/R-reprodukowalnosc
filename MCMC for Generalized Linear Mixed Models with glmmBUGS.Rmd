@@ -1,0 +1,45 @@
+---
+title: "MCMC for Generalized Linear Mixed Models with glmmBUGS"
+author: "Wojciech Szczypek"
+date: "18 05 2020"
+output: html_document
+---
+
+```{r, echo = FALSE, results = 'hide'}
+library(glmmBUGS)
+library(MASS)
+```
+
+
+```{r, echo = TRUE, results = 'hide'}
+data(bacteria)
+head(bacteria)
+bacterianew <- bacteria
+bacterianew$yInt = as.integer(bacterianew$y == "y")
+levels(bacterianew$trt) <- c("placebo","drug", "drugplus")
+bacrag <- glmmBUGS(formula = yInt ~ trt + week, data = bacterianew,effects = "ID", modelFile = "model.bug",family = "bernoulli")
+source("getInits.R")
+startingValues = bacrag$startingValues
+# bacResult = bugs(bacrag$ragged, getInits,
+#                  model.file = "model.bug", n.chain = 3,n.iter = 2000,
+#                  n.burnin = 100,parameters.to.save = names(getInits()),n.thin = 10)
+
+```
+
+Już w pierwszych 2 chunkach z kodami mozemy natknąć się na błąd, który nie pozwala nam przejść dalej, ponieważ w kolejnych chunkach potrzebne są wyniki z porprzednich. Nawet jeśli nie wymagają poprzednich to konieczne jest użyycie funkcji bugs(), która jest źródłem niemożnosci reprodukcji. Dodatkowo, pakiety, które były potrzebne do uruchomienia nawet tej krótkiej cześci kodu wymagały od nas zmiany wersji R i ściagnięcia pakietów w niekonwecjonalny sposób - nie z CRANu tylko z Forge'a
+
+
+# Podsumowanie
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |➖➖➖➖➖|
+| Kompatybilność z nowszymi wersjami |✅✅❌❌❌|
+| Kwestie graficzne/estetyczne |➖➖➖➖➖|
+| Brak problemów przy dodatkowej konfiguracji |❌❌❌❌❌|
+| Odporność na wpływ losowości |➖➖➖➖➖|
+| Dostępność kodów źródłowych |✅✅✅✅❌|
+
+### Session info
+```{r, echo=FALSE, cache=TRUE}
+sessionInfo()
+```

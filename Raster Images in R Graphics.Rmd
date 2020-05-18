@@ -1,0 +1,133 @@
+---
+title: "Raster Images in R Graphics"
+author: "Wojciech Szczypek"
+date: "18 05 2020"
+output: html_document
+---
+
+### Figure 1
+
+```{r echo = FALSE, warning = FALSE, message = FALSE, cache = TRUE}
+ library(grid)
+grid.raster(1:10/11)
+
+```
+
+### Figure 2
+
+```{r echo = FALSE, warning = FALSE, message = FALSE, cache = TRUE}
+grid.raster(matrix(colors()[1:100], ncol=10), interpolate=FALSE)
+```
+
+### Figure 3
+
+```{r echo = FALSE, warning = FALSE, message = FALSE, cache = TRUE}
+grid.raster(1:10/11, interpolate=FALSE)
+ grid.raster(matrix(colors()[1:100], ncol=10))
+
+```
+
+### Figure 4?
+
+```{r echo = FALSE, warning = FALSE, message = FALSE, cache = TRUE}
+# download.file("http://cran.r-project.org/Rlogo.jpg", "Rlogo.jpg")
+# library(ReadImages)
+# logo <- read.jpeg("Rlogo.jpg")
+# par(mar=rep(0, 4))
+# plot(logo)
+# grid.raster(logo)
+```
+
+### Figure 5
+
+```{r echo = FALSE, warning = FALSE, message = FALSE, cache = TRUE}
+x <- y <- seq(-4*pi, 4*pi, len=27)
+r <- sqrt(outer(x^2, y^2, "+"))
+z <- cos(r^2)*exp(-r/6)
+image <- (z - min(z))/diff(range(z))
+step <- diff(x)[1]
+xrange <- range(x) + c(-step/2, step/2)
+yrange <- range(y) + c(-step/2, step/2)
+plot(x, y, ann=FALSE, xlim=xrange, ylim=yrange, xaxs="i", yaxs="i")
+rasterImage(image, xrange[1], yrange[1], xrange[2], yrange[2], interpolate=FALSE)
+
+```
+
+### Figure 6
+
+```{r echo = FALSE, warning = FALSE, message = FALSE, cache = TRUE}
+x <- c(0.00, 0.40, 0.86, 0.85, 0.69, 0.48,
+0.54, 1.09, 1.11, 1.73, 2.05, 2.02)
+library(lattice)
+barchart(1:12 ~ x, origin=0, col="white",
+panel=function(x, y, ...) {
+panel.barchart(x, y, ...)
+grid.raster(logo, x=0, width=x, y=y,
+default.units="native",
+just="left",
+height=unit(2/37,
+"npc"))
+})
+
+```
+
+### Figure 7
+
+```{r echo = FALSE, warning = FALSE, message = FALSE, cache = TRUE}
+barchart(1:12 ~ x, origin=0, col="white",
+panel=function(x, y, ...) {
+panel.barchart(x, y, ...)
+grid.raster(t(1:10/11), x=0,
+width=x, y=y,
+default.units="native",
+just="left",
+height=unit(2/37,
+"npc"))
+})
+
+```
+
+### Figure 8?
+
+```{r echo = FALSE, warning = FALSE, message = FALSE, cache = TRUE}
+# library(maps)
+# par(mar=rep(0, 4))
+# map(region="Spain", col="black", fill=TRUE)
+# mask <- grid.cap()
+# library(png)
+# espana <- readPNG("1000px-Flag_of_Spain.png")
+# espanaRaster <- as.raster(espana)
+# espanaRaster <- espanaRaster[, 1:dim(mask)[2]]
+# mask <- mask[1:dim(espanaRaster)[1], ]
+# espanaRaster[mask != "black"] <- "transparent"
+# par(mar=rep(0, 4))
+# map(region="Spain")
+# grid.raster(espanaRaster, y=1, just="top")
+# map(region="Spain", add=TRUE)
+
+
+```
+
+
+### Conclusions
+
+As we can see above, some of the figures haven't finally appeared. Both required grid pack that isn't not supported by my R version so as for now it's impossible for me to reproduce this article. Moreover on the R journal website of this article there were no supplementary materials, so reproducing all of the codes was more difficult, because I had to follow the code whcich was in the article itself. It was carelessly formated, so it was quite annoying. However if we take into account that the article is from 2010, then it's not as bad as it could be. In my opinion, this is the perfect example of the article whcich is not easily reproducable and can cause troubles to people who would like to achieve the same results as in the article.
+
+
+# Podsumowanie
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |✅✅❌❌❌|
+| Kompatybilność z nowszymi wersjami |✅✅❌❌❌|
+| Kwestie graficzne/estetyczne |✅✅✅✅✅|
+| Brak problemów przy dodatkowej konfiguracji |✅✅❌❌❌|
+| Odporność na wpływ losowości |✅✅✅✅✅|
+| Dostępność kodów źródłowych |✅✅✅✅❌|
+
+
+
+
+### Session info
+```{r, echo=FALSE, cache=TRUE}
+sessionInfo()
+```
