@@ -1,0 +1,51 @@
+---
+title: "tmvtnorm - Pawel"
+author: "Paweł Koźmiński"
+date: "5/19/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tmvtnorm)
+mu <- c(0.5, 0.5)
+sigma <- matrix(c(1, 0.8, 0.8, 2), 2, 2)
+a <- c(-1, -Inf)
+b <- c(0.5, 4)
+X <- rtmvnorm(n=10000, mean=mu, sigma=sigma, lower=a, upper=b, algorithm="rejection")
+alpha <- pmvnorm(lower=a, upper=b, mean=mu, sigma=sigma)
+X <- rtmvnorm(n=10000, mean=mu,sigma=sigma, lower=a, upper=b,algorithm="gibbs")
+X2 <- rtmvnorm(n=10000, mean=mu,sigma=sigma, lower=a, upper=b,algorithm="gibbs", burn.in.samples=100,thinning = 5)
+acf(X2)
+x <- seq(-1, 0.5, by=0.1)
+fx <- dtmvnorm(x, mu, sigma,lower=a, upper=b, margin=1)
+fx <- dtmvnorm(x=c(0.5, 1), mu, sigma,lower=a, upper=b, margin=c(1,2))
+(moments <- mtmvnorm(mean=mu, sigma=sigma,lower=a, upper=b))
+colMeans(X)
+cov(X)
+
+```
+
+
+# Ocena i podsumowanie
+
+| Kategoria | Ocena |
+|-----------|-------|
+| Dostęp do zewnętrznych zasobów |➖➖➖➖➖️|
+| Kompatybilność z nowszymi wersjami |✅✅✅✅✅|
+| Kwestie graficzne/estetyczne |➖➖➖➖➖|
+| Brak problemów przy dodatkowej konfiguracji |✅✅✅✅✅|
+| Odporność na wpływ losowości |✅✅✅✅✅|
+| Dostępność kodów źródłowych |✅✅❌❌❌|
+
+W artykule nie ma problemów z losowością - wszystkie wyniki można odtworzyć z zadaną dokładnością. Problemem jest natomiast brak możliwości odtworzenia prezentowanych wykresów. Ponadto, funkcja `acf()` produkuje obrazy które nie są przedstawione w artykule.
+
+
+```{r}
+sessionInfo()
+```
+
+
