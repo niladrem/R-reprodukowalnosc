@@ -29,3 +29,4 @@ Lista artykułów:
 | RSSampling: A Pioneering Package forRanked Set Sampling | 2019 | Busra Sevinc, Bekir Cetintav, Melek Esemen and Selma Gurler | The R Journal |
 | Fixed Point Acceleration in R | 2018 | Stuart Baumann and Margaryta Klymak | The R Journal |
 | Nowcasting: An R Package for PredictingEconomic Variables Using DynamicFactor Models | 2018 | Serge de Valk, Daiane de Mattos and Pedro Ferreira | The R Journal |
+| Raster Images in R Graphics | 2011 | Paul Murrell | The R Journal |
