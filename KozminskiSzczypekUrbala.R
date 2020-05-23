@@ -30,15 +30,19 @@ marks %>%
   group_by(variable) %>%
   mutate(n_checked = sum(!is.na(value))) %>%
   ggplot()+
-  geom_boxplot(aes(x = variable, y = value, fill = cut(n_checked, c(3, 8, 9.5, 11, 13, 15, 17), labels = c(4, 9, 10, 12, 14, 16))))+
+  geom_boxplot(aes(x = variable, y = value, fill = cut(n_checked, c(3, 8, 9.5, 11, 13, 15, 17), labels = c(4, 9, 10, 12, 14, 16))),
+               outlier.shape=NA)+
+  geom_point(aes(x = variable, y = value), alpha = 0.4, size = 0.8)+
   theme_bw() +
   scale_fill_manual( values = c('#f0f9e8','#ccebc5','#a8ddb5','#7bccc4','#43a2ca','#0868ac'))+
   labs(fill = "Number of articles\nwith a mark",
        y = 'Marks distribution',
        title = 'Summary of marking the articles') +
   scale_x_discrete(name = 'Category',
-                   labels = c("External\nresources", "Compatibility with\nolder versions",
-                              "Graphics", "Additional\nconfiguration", "Resistance to\nrandomness", "Availability"))
+                   limits = c('ext_resources', 'randomness', 'graphics', 'add_config', 'compatibility', 'availability'),
+                   labels = c("External\nresources", "Resistance to\nrandomness", "Graphics", "Additional\nconfiguration",
+                              "Compatibility with\nolder versions", "Code availability"))
+  
   
 
                     
