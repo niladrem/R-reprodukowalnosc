@@ -39,8 +39,6 @@ marks %>%
   scale_x_discrete(name = 'Category',
                    labels = c("External\nresources", "Compatibility with\nolder versions",
                               "Graphics", "Additional\nconfiguration", "Resistance to\nrandomness", "Availability"))
-    
-marks %>%
-  melt(id.vars = NULL) -> x
+  
 
                     
